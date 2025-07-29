@@ -113,5 +113,4 @@ MIT License © 2025 [@shuseiyokoi](https://github.com/shuseiyokoi)
 
 ---
 
-Let me know if you want this version with an English-Japanese toggle or add deployment instructions (Amplify + Bedrock Agent setup).
 
