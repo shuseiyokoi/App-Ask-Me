@@ -1,70 +1,117 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# 🧠 Ask Me — RAG-Powered Career Chatbot
 
-In the project directory, you can run:
+**Ask Me** is a Retrieval-Augmented Generation (RAG) chatbot designed to answer questions about my professional experience using Large Language Models (LLMs) enhanced with domain-specific knowledge.
 
-### `npm start`
+💼 Instead of scrolling through my resume or website, recruiters and collaborators can interact with this chatbot to ask questions like:
+- "What AI projects has Shu worked on?"
+- "Does he have experience with time series forecasting?"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The app responds with personalized, accurate answers — powered by LLMs, Amazon Bedrock, and a structured knowledge base in S3.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🔗 **Live Demo**: [Ask Me App](https://main.d1tdd63qxtj4xh.amplifyapp.com/)  
+📝 **Blog**: [LLM RAG Chatbot: Ask Me — Full Technical Breakdown](https://www.notion.so/shuseiyokoi/LLM-RAG-ChatBot-Ask-Me-1adf61fbe85c805cb7a1fb0904318c4b)
 
-### `npm test`
+<img width="748" height="628" alt="sample" src="https://github.com/user-attachments/assets/41cb704d-c9b0-4cbd-9208-c85d5f8f7354" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📐 System Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="3328" height="1632" alt="image (6)" src="https://github.com/user-attachments/assets/4f0facb1-ec46-4117-a731-2eb2ba864c11" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Frontend**: Built with **React**, deployed via **AWS Amplify**
+- **RAG Backend**:
+  - **Amazon Bedrock Agent** handles query processing and response generation
+  - **Amazon Kendra** retrieves context from documents in **Amazon S3**
+- **Serverless Functions**:
+  - `AskMe Function`: Handles user input and AI responses
+  - `Logging Function`: Stores chat logs for future analysis
+- **Monitoring (Optional)**: Amazon CloudWatch + SNS for alerting
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🧠 LLM + RAG Pipeline
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Why RAG?
+LLMs like GPT or Claude are powerful, but can hallucinate or miss domain-specific context. RAG solves this by injecting real knowledge — in this case, a structured version of my career history.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Key Components
+- **Amazon Kendra** indexes documents from S3 (resume, projects, certs)
+- **Amazon Bedrock Agent** (using **Anthropic’s Claude or Amazon Titan**) handles QA over that content
+- **Structured JSON documents** allow precise retrieval and context injection
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🗂️ Example S3 Document (Certifications)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```json
+{
+  "title": "CompTIA Data+",
+  "issuer": "CompTIA",
+  "issue_date": "December 16, 2023",
+  "skills": [
+    "Data Analysis", "Data Visualization", "Data Governance"
+  ],
+  "url": "https://www.credly.com/badges/7e3c6a83-954e-4d91-9a70-09604eb981e3"
+}
+````
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📦 Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Layer           | Tech Used                            |
+| --------------- | ------------------------------------ |
+| LLM / Reasoning | Amazon Bedrock Agent (Nova Pro) |
+| Retrieval       | Amazon Kendra                        |
+| Knowledge Base  | Amazon S3 (JSON structured docs)     |
+| UI              | React + AWS Amplify                  |
+| Monitoring      | CloudWatch + SNS (optional)          |
+| Logging         | AWS Lambda + S3                      |
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📈 Use Case
 
-### Making a Progressive Web App
+This chatbot was built to help:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Recruiters quickly understand my background
+* Clients verify my project experience
+* Showcase how RAG can make LLMs *useful in real-world settings*
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🚀 Try It Out
 
-### Deployment
+👉 [Launch the Chatbot](https://main.d1tdd63qxtj4xh.amplifyapp.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+No sign-up required. Ask about projects, certs, or skills — and get instant answers.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📖 Learn More
+
+📝 [Full Blog with Diagrams, Setup & Code](https://www.notion.so/shuseiyokoi/LLM-RAG-ChatBot-Ask-Me-1adf61fbe85c805cb7a1fb0904318c4b)
+
+---
+
+## 🛠️ Future Work
+
+* Add vector-based semantic search for multi-turn reasoning
+* Improve summarization and answer ranking
+* Open-source version with Hugging Face + LangChain
+
+---
+
+## 📄 License
+
+MIT License © 2025 [@shuseiyokoi](https://github.com/shuseiyokoi)
+
+
+---
+
+Let me know if you want this version with an English-Japanese toggle or add deployment instructions (Amplify + Bedrock Agent setup).
+
