@@ -5,7 +5,7 @@
 **Ask Me** is a Retrieval-Augmented Generation (RAG) chatbot designed to answer questions about my professional experience using Large Language Models (LLMs) enhanced with domain-specific knowledge.
 
 💼 Instead of scrolling through my resume or website, recruiters and collaborators can interact with this chatbot to ask questions like:
-- "What AI projects has Shu worked on?"
+- "What AI projects has Shusei worked on?"
 - "Does he have experience with time series forecasting?"
 
 The app responds with personalized, accurate answers — powered by LLMs, Amazon Bedrock, and a structured knowledge base in S3.
